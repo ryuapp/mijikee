@@ -1,0 +1,7 @@
+{
+  "tasks": {
+    "start": "deno run -A --unstable --watch=main.ts main.ts",
+    "fmt": "deno fmt --no-semicolons --single-quote"
+  },
+  "importMap": "import_map.json"
+}

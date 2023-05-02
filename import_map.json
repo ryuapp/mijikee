@@ -1,0 +1,10 @@
+{
+  "imports": {
+    "npm/": "https://unpkg.com/",
+    "std/": "https://deno.land/std@0.185.0/",
+    "hono": "https://deno.land/x/hono@v3.1.7/mod.ts",
+    "hono/": "https://deno.land/x/hono@v3.1.7/",
+    "zod": "https://deno.land/x/zod@v3.21.4/mod.ts",
+    "zod/": "https://deno.land/x/zod@v3.21.4/"
+  }
+}
