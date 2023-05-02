@@ -3,7 +3,7 @@
 A simple URL shortener with [Deno KV](https://deno.com/kv).\
 Mijikee works on [Deno Deploy](https://deno.com/deploy).
 
-## TOC
+## 📃 TOC
 
 - [Getting started](#-getting-started)
 - [How to use](#-how-to-use)
