@@ -53,7 +53,7 @@ api.post('/v1/links', async (c) => {
     message: 'Short URL is created!',
     status: 'ok',
     key: shortPath,
-  }, 200)
+  }, 201)
 })
 app.route('/api', api)
 
