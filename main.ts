@@ -1,60 +1,15 @@
-/// <reference lib="deno.unstable" />
-import { Hono } from 'hono/mod.ts'
-import { z } from 'zod/mod.ts'
-import { serve } from 'std/http/server.ts'
-import * as base58 from 'std/encoding/base58.ts'
+/// <reference no-default-lib="true" />
+/// <reference lib="dom" />
+/// <reference lib="dom.iterable" />
+/// <reference lib="dom.asynciterable" />
+/// <reference lib="deno.ns" />
 
-type URL = {
-  createdAt: number
-  url: string
-}
+import "$std/dotenv/load.ts";
 
-const app = new Hono()
-const api = new Hono()
-const kv = await Deno.openKv()
+import { start } from "$fresh/server.ts";
+import manifest from "./fresh.gen.ts";
 
-app.get('/', (c) => c.text('Hello Mijikee!'))
-app.get('/:key', async (c) => {
-  const { value } = await kv.get<URL>(['urls', c.req.param('key')])
+import twindPlugin from "$fresh/plugins/twind.ts";
+import twindConfig from "./twind.config.ts";
 
-  if (value) {
-    return c.redirect(value.url)
-  }
-  return c.json({
-    message: '404 Not found',
-    status: 'error',
-  }, 404)
-})
-
-// API
-api.post('/v1/links', async (c) => {
-  const { url } = await c.req.json<{ url: string }>()
-  const httpsSchema = z.string().startsWith('https://')
-  const shortPath = base58.encode(crypto.getRandomValues(new Uint8Array(5)))
-
-  if (!url) {
-    return c.json({
-      message: 'URL is empty.',
-      status: 'error',
-    }, 400)
-  }
-  if (!httpsSchema.safeParse(url).success) {
-    return c.json({
-      message: 'Please send URL starting with "https://".',
-      status: 'error',
-    }, 400)
-  }
-
-  await kv.set(['urls', shortPath], {
-    createdAt: Date.now(),
-    url: url,
-  })
-  return c.json({
-    message: 'Short URL is created!',
-    status: 'ok',
-    key: shortPath,
-  }, 201)
-})
-app.route('/api', api)
-
-serve(app.fetch)
+await start(manifest, { plugins: [twindPlugin(twindConfig)] });

@@ -1,7 +1,11 @@
 {
+  "lock": false,
   "tasks": {
-    "start": "deno run -A --unstable --watch=main.ts main.ts",
-    "fmt": "deno fmt --no-semicolons --single-quote"
+    "start": "deno run -A --watch=static/,routes/ dev.ts"
   },
-  "importMap": "import_map.json"
+  "importMap": "./import_map.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact"
+  }
 }

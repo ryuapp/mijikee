@@ -1,7 +1,5 @@
 {
-  "deno.enablePaths": [
-    "./"
-  ],
   "deno.enable": true,
-  "editor.inlayHints.enabled": "off"
+  "deno.lint": true,
+  "editor.defaultFormatter": "denoland.vscode-deno"
 }
