@@ -1,23 +1,26 @@
 import { Head } from "$fresh/runtime.ts";
-import Counter from "../islands/Counter.tsx";
+import { Handlers } from "$fresh/server.ts";
+import Input from "../islands/Input.tsx";
 
+export const handler: Handlers = {
+  POST: (req, ctx) => {
+    return Response.json({ ok: true });
+  },
+};
 export default function Home() {
   return (
     <>
       <Head>
-        <title>Fresh App</title>
+        <title>Mijikee</title>
       </Head>
       <div class="p-4 mx-auto max-w-screen-md">
-        <img
-          src="/logo.svg"
-          class="w-32 h-32"
-          alt="the fresh logo: a sliced lemon dripping with juice"
-        />
-        <p class="my-6">
-          Welcome to `fresh`. Try updating this message in the
-          ./routes/index.tsx file, and refresh.
+        <h1 class="mt-20 text-5xl text-center">Mijikee</h1>
+        <p class="my-6 text-center text-xl">
+          is a simple URL shortener.
         </p>
-        <Counter start={3} />
+        <div>
+          <Input class="w-full" placeholder="URL" />
+        </div>
       </div>
     </>
   );
