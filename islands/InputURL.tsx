@@ -21,8 +21,8 @@ export default function InputURL() {
       }).then((response) => response.json())
         .then((data) => {
           console.log("Success:", data);
-          setShortPath("/" + data.path);
-          setFullPath(location.origin + "/" + data.path);
+          setShortPath("/" + data.shortPath);
+          setFullPath(location.origin + "/" + data.shortPath);
           setOriginURL(data.originURL);
           setMessage("Success!");
           inputTarget.value = "";

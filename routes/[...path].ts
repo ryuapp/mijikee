@@ -39,8 +39,8 @@ api.post("/v1/links", async (c) => {
   return c.json({
     message: "Short URL is created!",
     status: "ok",
-    originUrl: url,
-    path: shortPath,
+    originURL: url,
+    shortPath: shortPath,
   }, 201);
 });
 app.route("/api", api);
