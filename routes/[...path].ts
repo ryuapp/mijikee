@@ -1,7 +1,7 @@
 /// <reference lib="deno.unstable" />
 import { Handler } from "$fresh/server.ts";
 import { Hono } from "hono";
-import { getURL, setURL } from "../services/db.ts";
+import { getUrl, setUrl } from "../services/db.ts";
 import * as base58 from "$std/encoding/base58.ts";
 import { z } from "zod";
 
@@ -9,7 +9,7 @@ const app = new Hono();
 const api = new Hono();
 
 app.get("/:key", async (c) => {
-  const { value } = await getURL(c.req.param("key"));
+  const { value } = await getUrl(c.req.param("key"));
   console.log(value);
   if (value) {
     return c.redirect(value.url);
@@ -30,16 +30,16 @@ api.post("/v1/links", async (c) => {
   }
   if (!httpsSchema.safeParse(url).success) {
     return c.json({
-      message: 'Please send URL starting with "https://".',
+      message: 'Please send Url starting with "https://".',
       status: "error",
     }, 400);
   }
 
-  await setURL(url, shortPath);
+  await setUrl(url, shortPath);
   return c.json({
     message: "Short URL is created!",
     status: "ok",
-    originURL: url,
+    originUrl: url,
     shortPath: shortPath,
   }, 201);
 });

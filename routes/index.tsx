@@ -1,6 +1,10 @@
 import { Head } from "$fresh/runtime.ts";
 import { Handlers } from "$fresh/server.ts";
-import InputURL from "../islands/InputURL.tsx";
+<<<<<<< HEAD
+import InputUrl from "../islands/InputURL.tsx";
+=======
+import InputUrl from "../islands/InputUrl.tsx";
+>>>>>>> 0d12b81a8a438fb14241447b533c83605c3deb23
 
 export const handler: Handlers = {
   POST: (req, ctx) => {
@@ -19,7 +23,7 @@ export default function Home() {
           is a simple URL shortener.
         </p>
         <div>
-          <InputURL />
+          <InputUrl />
         </div>
       </div>
     </>

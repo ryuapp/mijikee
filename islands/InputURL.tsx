@@ -1,9 +1,9 @@
 import { JSX } from "preact";
-import { validURL } from "../services/valid.ts";
+import { validUrl } from "../services/valid.ts";
 import { useState } from "preact/hooks";
 
-export default function InputURL() {
-  const [originURL, setOriginURL] = useState("");
+export default function InputUrl() {
+  const [originUrl, setOriginUrl] = useState("");
   const [shortPath, setShortPath] = useState("");
   const [fullPath, setFullPath] = useState("");
   const [message, setMessage] = useState("");
@@ -11,7 +11,7 @@ export default function InputURL() {
   const handleSubmit = async (inputTarget: HTMLInputElement) => {
     const url = inputTarget.value;
 
-    if (validURL(url)) {
+    if (validUrl(url)) {
       console.log(url);
       await fetch("/api/v1/links", {
         method: "POST",
@@ -23,7 +23,7 @@ export default function InputURL() {
           console.log("Success:", data);
           setShortPath("/" + data.shortPath);
           setFullPath(location.origin + "/" + data.shortPath);
-          setOriginURL(data.originURL);
+          setOriginUrl(data.originUrl);
           setMessage("Success!");
           inputTarget.value = "";
         })
@@ -39,7 +39,7 @@ export default function InputURL() {
     handleSubmit(e.target as HTMLInputElement);
   };
   const handleInput = (e: JSX.TargetedEvent) => {
-    if (validURL((e.target as HTMLInputElement).value)) {
+    if (validUrl((e.target as HTMLInputElement).value)) {
       setValid(true);
     } else {
       setValid(false);
@@ -48,7 +48,7 @@ export default function InputURL() {
   return (
     <>
       <input
-        id="inputURL"
+        id="inputUrl"
         aria-invalid={isValid}
         class="w-full px-3 py-2 bg-white rounded border(gray-500 2) disabled:(opacity-50 cursor-not-allowed)"
         onKeyDown={handleKeyDown}
@@ -57,9 +57,9 @@ export default function InputURL() {
       <div class="text-center">
         {isValid
           ? <p class="text-green-500">OK</p>
-          : <p class="text-red-500">Invalid URL</p>}
+          : <p class="text-red-500">Invalid Url</p>}
         <p>{message}</p>
-        <p>{originURL}</p>
+        <p>{originUrl}</p>
         {message ? <p>↓</p> : ""}
         <a class="text-blue-500 hover:underline" href={shortPath}>{fullPath}</a>
       </div>
