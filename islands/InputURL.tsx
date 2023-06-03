@@ -23,7 +23,7 @@ export default function InputURL() {
           console.log("Success:", data);
           setShortPath("/" + data.path);
           setFullPath(location.origin + "/" + data.path);
-          setOriginURL(url);
+          setOriginURL(data.originURL);
           setMessage("Success!");
           inputTarget.value = "";
         })

@@ -39,7 +39,7 @@ api.post("/v1/links", async (c) => {
   return c.json({
     message: "Short URL is created!",
     status: "ok",
-    url: url,
+    originUrl: url,
     path: shortPath,
   }, 201);
 });
